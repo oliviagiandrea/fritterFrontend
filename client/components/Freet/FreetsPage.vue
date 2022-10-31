@@ -43,11 +43,26 @@
       <section
         v-if="$store.state.freets.length"
       >
+      <div v-for="freet in $store.state.freets">
         <FreetComponent
+          :key="freet.id"
+          :freet="freet"
+        />
+        <!-- <BookmarkComponent
+          :key="freet.id"
+          :freet="freet"
+        /> -->
+      </div>
+        <!-- <FreetComponent
           v-for="freet in $store.state.freets"
           :key="freet.id"
           :freet="freet"
         />
+        <BookmarkComponent
+          v-for="freet in $store.state.freets"
+          :key="freet.id"
+          :freet="freet"
+        /> -->
       </section>
       <article
         v-else
@@ -62,10 +77,11 @@
 import FreetComponent from '@/components/Freet/FreetComponent.vue';
 import CreateFreetForm from '@/components/Freet/CreateFreetForm.vue';
 import GetFreetsForm from '@/components/Freet/GetFreetsForm.vue';
+import BookmarkComponent from '@/components/Bookmark/BookmarkComponent.vue';
 
 export default {
   name: 'FreetPage',
-  components: {FreetComponent, GetFreetsForm, CreateFreetForm},
+  components: {FreetComponent, GetFreetsForm, CreateFreetForm, BookmarkComponent},
   mounted() {
     this.$refs.getFreetsForm.submit();
   }
