@@ -147,61 +147,7 @@ export default {
         this.$set(this.alerts, e, "error");
         setTimeout(() => this.$delete(this.alerts, e), 3000);
       }
-    },
-    async hideFollowers() {
-      /**
-       * Logged in user hides their followers
-       */
-      const requestOptions = {
-        method: "PUT",
-        //   headers: {'Content-Type': 'application/json'},
-        //   credentials: 'same-origin',
-        //   body: JSON.stringify({ source: this.newsource })
-      };
-      const url = `/api/follow/hidefollow/${this.user.username}`;
-      try {
-        const r = await fetch(url, requestOptions);
-        const res = await r.json();
-        if (!r.ok) {
-          throw new Error(res.error);
-        }
-        this.getFollowers();
-        this.$store.commit("alert", {
-          message: `Successfully hid your followers!`,
-          status: "success",
-        });
-      } catch (e) {
-        this.$set(this.alerts, e, "error");
-        setTimeout(() => this.$delete(this.alerts, e), 3000);
-      }
-    },
-    async unhideFollowers() {
-      /**
-       * Logged in user unhides their followers
-       */
-      const requestOptions = {
-        method: "PUT",
-        //   headers: {'Content-Type': 'application/json'},
-        //   credentials: 'same-origin',
-        //   body: JSON.stringify({ source: this.newsource })
-      };
-      const url = `/api/follow/unhidefollow/${this.user.username}`;
-      try {
-        const r = await fetch(url, requestOptions);
-        const res = await r.json();
-        if (!r.ok) {
-          throw new Error(res.error);
-        }
-        this.getFollowers();
-        this.$store.commit("alert", {
-          message: `Successfully unhid your followers!`,
-          status: "success",
-        });
-      } catch (e) {
-        this.$set(this.alerts, e, "error");
-        setTimeout(() => this.$delete(this.alerts, e), 3000);
-      }
-    },
+    }
   },
 };
 </script>

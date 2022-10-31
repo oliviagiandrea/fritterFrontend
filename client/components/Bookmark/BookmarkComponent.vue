@@ -6,9 +6,6 @@
         <button @click="unbookmarkFreet">Unbookmark</button>
       </div>
     </header>
-    <p class="info">
-      {{ this.bookmarks }}
-    </p>
     <section class="alerts">
       <article
         v-for="(status, alert, index) in alerts"
@@ -20,23 +17,6 @@
     </section>
   </article>
 </template>
-
-<!-- <template>
-    <div>
-    <button
-        v-if="bookmarked"
-        @click="unbookmarkFreet"
-    >
-        Unbookmark
-    </button>
-    <button
-        v-if="!bookmarked"
-        @click="bookmarkFreet"
-    >
-        Bookmark
-    </button>
-</div>
-</template> -->
 
 <script>
 export default {
@@ -60,6 +40,7 @@ export default {
        */
       const params = {
         method: "DELETE",
+        body: JSON.stringify({ freetId: this.freet._id }),
         callback: () => {
           this.$store.commit("alert", {
             message: "Successfully unbookmarked freet!",
@@ -67,15 +48,17 @@ export default {
           });
         },
       };
+      console.log(this);
       this.request(params);
     },
     bookmarkFreet() {
       /**
        * Bookmarks this freet.
        */
+      console.log(this);
       const params = {
         method: "POST",
-        // message: 'Successfully bookmarked freet!',
+        body: JSON.stringify({ freetId: this.freet._id }),
         callback: () => {
           this.$store.commit("alert", {
             message: "Successfully bookmarked freet!",
@@ -97,11 +80,12 @@ export default {
         headers: { "Content-Type": "application/json" },
       };
       if (params.body) {
+        console.log(params.body);
         options.body = params.body;
       }
       try {
         const r = await fetch(
-          `/api/bookmarks/${this.freet._id}`,
+          `/api/bookmarks`,
           options
         );
         if (!r.ok) {

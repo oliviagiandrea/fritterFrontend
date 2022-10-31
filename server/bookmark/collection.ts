@@ -39,6 +39,17 @@ class BookmarkCollection {
     return BookmarkModel.findOne({_id: bookmarkId}).populate('freetId authorId dateSaved');
   }
 
+   /**
+   * Find a bookmark by freetId/userId pair
+   *
+   * @param {string} freetId - The id of the freet that was bookmarked
+   * @param {string} userId - The id of the user who bookmarked the freet
+   * @return {Promise<HydratedDocument<Bookmark>> | Promise<null> } - The bookmark with the given bookmarkId, if any
+   */
+    static async findOneByFreetAndUser(freetId: Types.ObjectId | string, userId: Types.ObjectId | string): Promise<HydratedDocument<Bookmark>> {
+      return BookmarkModel.findOne({freetId: freetId, authorId: userId});
+    }
+
   /**
    * Get all the bookmarks in the database
    *

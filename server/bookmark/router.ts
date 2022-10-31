@@ -51,7 +51,7 @@ router.get(
 /**
  * Create a new bookmark.
  *
- * @name POST /api/bookmarks
+ * @name POST /api/bookmarks/
  *
  * @param {string} freetId - The id of the freet to bookmark
  * @return {BookmarkResponse} - The created bookmark
@@ -88,16 +88,37 @@ router.post(
  * @throws {404} - If the bookmarkId is not valid
  */
 router.delete(
-  '/:bookmarkId?',
+  // '/:bookmarkId?',
+  // [
+  //   userValidator.isUserLoggedIn,
+  //   bookmarkValidator.isBookmarkExists
+  // ],
+  // async (req: Request, res: Response) => {
+  //   await BookmarkCollection.deleteOne(req.params.bookmarkId);
+  //   res.status(200).json({
+  //     message: 'Your bookmark was deleted successfully.'
+  //   });
+  // }
+  '/',
   [
     userValidator.isUserLoggedIn,
-    bookmarkValidator.isBookmarkExists
+    bookmarkValidator.isFreetExists
   ],
   async (req: Request, res: Response) => {
-    await BookmarkCollection.deleteOne(req.params.bookmarkId);
-    res.status(200).json({
-      message: 'Your bookmark was deleted successfully.'
-    });
+    const userId = (req.session.userId as string) ?? ''; // Will not be an empty string since its validated in isUserLoggedIn
+    const freetId = (req.body.freetId as string) ?? ''; // Will not be an empty string since its validated in isFreetExists
+    const bookmark = await BookmarkCollection.findOneByFreetAndUser(freetId, userId);
+
+    if (bookmark) {
+      await BookmarkCollection.deleteOne(bookmark._id);
+      res.status(200).json({
+        message: 'Your bookmark was deleted successfully.'
+      });
+    } else {
+      res.status(404).json({
+        message: 'Unable to delete bookmark that does not exist.'
+      });
+    }
   }
 );
 

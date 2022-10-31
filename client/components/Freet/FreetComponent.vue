@@ -25,7 +25,7 @@
       Posted at {{ freet.dateModified }}
       <i v-if="freet.edited">(edited)</i>
     </p>
-    <BookmarkComponent :key="freet.id" :freet="freet" />
+    <BookmarkComponent v-bind:freet="freet" />
     <section class="alerts">
       <article
         v-for="(status, alert, index) in alerts"
