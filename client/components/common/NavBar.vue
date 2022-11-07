@@ -26,6 +26,9 @@
       >
         Login
       </router-link>
+      <router-link to="/feed">
+        Personal Feed
+      </router-link>
     </div>
     <section class="alerts">
       <article

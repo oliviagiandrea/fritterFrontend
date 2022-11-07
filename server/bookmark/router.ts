@@ -88,17 +88,6 @@ router.post(
  * @throws {404} - If the bookmarkId is not valid
  */
 router.delete(
-  // '/:bookmarkId?',
-  // [
-  //   userValidator.isUserLoggedIn,
-  //   bookmarkValidator.isBookmarkExists
-  // ],
-  // async (req: Request, res: Response) => {
-  //   await BookmarkCollection.deleteOne(req.params.bookmarkId);
-  //   res.status(200).json({
-  //     message: 'Your bookmark was deleted successfully.'
-  //   });
-  // }
   '/',
   [
     userValidator.isUserLoggedIn,

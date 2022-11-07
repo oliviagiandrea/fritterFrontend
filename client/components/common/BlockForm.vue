@@ -13,7 +13,7 @@
       >
         <label :for="field.id">{{ field.label }}:</label>
         <textarea
-          v-if="field.id === 'content'"
+          v-if="field.id === 'content' || field.id === 'source'"
           :name="field.id"
           :value="field.value"
           @input="field.value = $event.target.value"

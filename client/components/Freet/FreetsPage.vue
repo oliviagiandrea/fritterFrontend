@@ -30,32 +30,14 @@
           </h2>
         </div>
         <div class="right">
-          <GetFreetsForm
-            ref="getFreetsForm"
-            value="author"
-            placeholder="🔍 Filter by author (optional)"
-            button="🔄 Get freets"
-          />
+          <GetFreetsForm ref="getFreetsForm" value="author" placeholder="🔍 Filter by author (optional)"
+            button="🔄 Get freets" />
         </div>
       </header>
       <section v-if="$store.state.freets.length">
         <div v-for="freet in $store.state.freets">
           <FreetComponent :key="freet.id" :freet="freet" />
-          <!-- <BookmarkComponent
-          :key="freet.id"
-          :freet="freet"
-        /> -->
         </div>
-        <!-- <FreetComponent
-          v-for="freet in $store.state.freets"
-          :key="freet.id"
-          :freet="freet"
-        />
-        <BookmarkComponent
-          v-for="freet in $store.state.freets"
-          :key="freet.id"
-          :freet="freet"
-        /> -->
       </section>
       <article v-else>
         <h3>No freets found.</h3>
@@ -91,7 +73,7 @@ section {
 }
 
 header,
-header > * {
+header>* {
   display: flex;
   justify-content: space-between;
   align-items: center;

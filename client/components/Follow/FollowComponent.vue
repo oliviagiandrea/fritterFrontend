@@ -18,10 +18,6 @@
       <button @click="followUser">Follow</button>
       <button @click="unfollowUser">Unfollow</button>
     </div>
-    <div v-if="$store.state.username === user.username" class="actions">
-      <button @click="hideFollowers">Hide Followers</button>
-      <button @click="unhideFollowers">Unhide Followers</button>
-    </div>
     <section class="alerts">
       <article
         v-for="(status, alert, index) in alerts"
@@ -64,11 +60,7 @@ export default {
       try {
         const r = await fetch(url);
         const res = await r.json();
-        this.followers = res["response"]; //['data'];
-        // const res = await r.json();
-        // if (!r.ok) {
-        //   throw new Error(res.error);
-        // }
+        this.followers = res["response"]; 
       } catch (e) {
         this.$set(this.alerts, e, "error");
         setTimeout(() => this.$delete(this.alerts, e), 3000);
@@ -82,11 +74,7 @@ export default {
       try {
         const r = await fetch(url);
         const res = await r.json();
-        this.following = res["response"]; //['data'];
-        // const res = await r.json();
-        // if (!r.ok) {
-        //   throw new Error(res.error);
-        // }
+        this.following = res["response"]; 
       } catch (e) {
         this.$set(this.alerts, e, "error");
         setTimeout(() => this.$delete(this.alerts, e), 3000);
@@ -98,9 +86,6 @@ export default {
        */
       const requestOptions = {
         method: "DELETE",
-        //   headers: {'Content-Type': 'application/json'},
-        //   credentials: 'same-origin',
-        //   body: JSON.stringify({ source: this.newsource })
       };
       const url = `/api/follow/followuser/${this.user.username}`;
       try {
@@ -126,9 +111,6 @@ export default {
        */
       const requestOptions = {
         method: "PUT",
-        //   headers: {'Content-Type': 'application/json'},
-        //   credentials: 'same-origin',
-        //   body: JSON.stringify({ source: this.newsource })
       };
       const url = `/api/follow/followuser/${this.user.username}`;
       try {

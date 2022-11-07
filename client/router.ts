@@ -14,8 +14,8 @@ const routes = [
   {path: '/account', name: 'Account', component: AccountPage},
   {path: '/login', name: 'Login', component: LoginPage},
   {path: '*', name: 'Not Found', component: NotFound},
-  {path: '/viewingusers', name: 'Users', component: UsersPage},
-  {path: '/myfeed', name: 'Your Feed', component: FeedPage}
+  {path: '/users', name: 'Users', component: UsersPage},
+  {path: '/feed', name: 'Your Feed', component: FeedPage}
 ];
 
 const router = new VueRouter({routes});

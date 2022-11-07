@@ -12,12 +12,7 @@
         <button @click="deleteFreet">🗑️ Delete</button>
       </div>
     </header>
-    <textarea
-      v-if="editing"
-      class="content"
-      :value="draft"
-      @input="draft = $event.target.value"
-    />
+    <textarea v-if="editing" class="content" :value="draft" @input="draft = $event.target.value" />
     <p v-else class="content">
       {{ freet.content }}
     </p>
@@ -26,12 +21,9 @@
       <i v-if="freet.edited">(edited)</i>
     </p>
     <BookmarkComponent v-bind:freet="freet" />
+    <SourceComponent :key="freet.id" :freet="freet" />
     <section class="alerts">
-      <article
-        v-for="(status, alert, index) in alerts"
-        :key="index"
-        :class="status"
-      >
+      <article v-for="(status, alert, index) in alerts" :key="index" :class="status">
         <p>{{ alert }}</p>
       </article>
     </section>
@@ -40,10 +32,11 @@
 
 <script>
 import BookmarkComponent from "@/components/Bookmark/BookmarkComponent.vue";
+import SourceComponent from '@/components/Source/SourceComponent.vue';
 
 export default {
   name: "FreetComponent",
-  components: { BookmarkComponent },
+  components: { BookmarkComponent, SourceComponent },
   props: {
     // Data from the stored freet
     freet: {

@@ -7,11 +7,7 @@
       </div>
     </header>
     <section class="alerts">
-      <article
-        v-for="(status, alert, index) in alerts"
-        :key="index"
-        :class="status"
-      >
+      <article v-for="(status, alert, index) in alerts" :key="index" :class="status">
         <p>{{ alert }}</p>
       </article>
     </section>
@@ -42,10 +38,8 @@ export default {
         method: "DELETE",
         body: JSON.stringify({ freetId: this.freet._id }),
         callback: () => {
-          this.$store.commit("alert", {
-            message: "Successfully unbookmarked freet!",
-            status: "success",
-          });
+          this.$set(this.alerts, 'Successfully unbookmarked freet!', 'success');
+          setTimeout(() => this.$delete(this.alerts, 'Successfully unbookmarked freet!'), 3000);
         },
       };
       console.log(this);
@@ -60,10 +54,8 @@ export default {
         method: "POST",
         body: JSON.stringify({ freetId: this.freet._id }),
         callback: () => {
-          this.$store.commit("alert", {
-            message: "Successfully bookmarked freet!",
-            status: "success",
-          });
+          this.$set(this.alerts, 'Successfully bookmarked freet!', 'success');
+          setTimeout(() => this.$delete(this.alerts, 'Successfully bookmarked freet!'), 3000);
         },
       };
       this.request(params);
