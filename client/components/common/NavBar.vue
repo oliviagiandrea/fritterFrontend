@@ -4,38 +4,12 @@
 
 <template>
   <nav>
-    <div class="left">
-      <img src="../../public/logo.svg">
-      <h1 class="title">
-        Fritter
-      </h1>
-    </div>
-    <div class="right">
-      <router-link to="/">
-        Home
-      </router-link>
-      <router-link
-        v-if="$store.state.username"
-        to="/account"
-      >
-        Account
-      </router-link>
-      <router-link
-        v-else
-        to="/login"
-      >
-        Login
-      </router-link>
-      <router-link to="/feed">
-        Personal Feed
-      </router-link>
-    </div>
+    <!-- <img src="../../public/logo.svg"> -->
+    <h1 class="title">
+      Fritter
+    </h1>
     <section class="alerts">
-      <article
-        v-for="(status, alert, index) in $store.state.alerts"
-        :key="index"
-        :class="status"
-      >
+      <article v-for="(status, alert, index) in $store.state.alerts" :key="index" :class="status">
         <p>{{ alert }}</p>
       </article>
     </section>
@@ -44,41 +18,57 @@
 
 <style scoped>
 nav {
-    padding: 1vw 2vw;
-    background-color: #ccc;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
+  padding: 1vw 2vw;
+  background-color: #F8F4E3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 .title {
-    font-size: 32px;
-    margin: 0 5px;
+  font-size: 32px;
+  margin: 0 5px;
+  width: 70%;
 }
 
 img {
-    height: 32px;
+  height: 32px;
 }
 
 .left {
-	display: flex;
-	align-items: center;
-}
-
-.right {
-    font-size: 20px;
-    display: grid;
-    gap: 16px;
-    grid-auto-flow: column;
-    align-items: center;
-}
-
-.right a {
-    margin-left: 5px;
+  display: flex;
+  align-items: center;
 }
 
 .alerts {
-    width: 25%;
+  width: 25%;
+}
+
+h1 {
+ overflow: hidden;
+ text-align: center;
+ color: #433633;
+}
+
+h1:before,
+h1:after {
+ background-color: #433633;
+ content: "";
+ display: inline-block;
+ height: 5px;
+ position: relative;
+ vertical-align: middle;
+ width: 50%;
+}
+
+h1:before {
+ right: 0.5em;
+ margin-left: -50%;
+}
+
+h1:after {
+ left: 0.5em;
+ margin-right: -50%;
 }
 </style>

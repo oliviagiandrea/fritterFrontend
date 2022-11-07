@@ -4,43 +4,23 @@
 <template>
   <form @submit.prevent="submit">
     <h3>{{ title }}</h3>
-    <article
-      v-if="fields.length"
-    >
-      <div
-        v-for="field in fields"
-        :key="field.id"
-      >
+    <article v-if="fields.length">
+      <div v-for="field in fields" :key="field.id">
         <label :for="field.id">{{ field.label }}:</label>
-        <textarea
-          v-if="field.id === 'content' || field.id === 'source'"
-          :name="field.id"
-          :value="field.value"
-          @input="field.value = $event.target.value"
-        />
-        <input
-          v-else
-          :type="field.id === 'password' ? 'password' : 'text'"
-          :name="field.id"
-          :value="field.value"
-          @input="field.value = $event.target.value"
-        >
+        <textarea v-if="field.id === 'content' || field.id === 'source'" :name="field.id" :value="field.value"
+          @input="field.value = $event.target.value" />
+        <input v-else :type="field.id === 'password' ? 'password' : 'text'" :name="field.id" :value="field.value"
+          @input="field.value = $event.target.value">
       </div>
     </article>
     <article v-else>
       <p>{{ content }}</p>
     </article>
-    <button
-      type="submit"
-    >
+    <button type="submit">
       {{ title }}
     </button>
     <section class="alerts">
-      <article
-        v-for="(status, alert, index) in alerts"
-        :key="index"
-        :class="status"
-      >
+      <article v-for="(status, alert, index) in alerts" :key="index" :class="status">
         <p>{{ alert }}</p>
       </article>
     </section>
@@ -72,13 +52,13 @@ export default {
         */
       const options = {
         method: this.method,
-        headers: {'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         credentials: 'same-origin' // Sends express-session credentials with request
       };
       if (this.hasBody) {
         options.body = JSON.stringify(Object.fromEntries(
           this.fields.map(field => {
-            const {id, value} = field;
+            const { id, value } = field;
             field.value = '';
             return [id, value];
           })
@@ -95,7 +75,7 @@ export default {
 
         if (this.setUsername) {
           const text = await r.text();
-          const res = text ? JSON.parse(text) : {user: null};
+          const res = text ? JSON.parse(text) : { user: null };
           this.$store.commit('setUsername', res.user ? res.user.username : null);
         }
 
@@ -126,26 +106,43 @@ form {
   position: relative;
 }
 
-article > div {
+article>div {
   display: flex;
   flex-direction: column;
 }
 
-form > article p {
+form>article p {
   margin: 0;
 }
 
 form h3,
-form > * {
+form>* {
   margin: 0.3em 0;
 }
 
 form h3 {
   margin-top: 0;
+  color: #433633;
 }
 
 textarea {
-   font-family: inherit;
-   font-size: inherit;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+button {
+  background-color: #433633;
+  color: white;
+  border-radius: 5px;
+  border-color: #433633;
+  border-width: 1px;
+  padding: 0.4rem 0.7rem;
+}
+
+button:hover {
+  background-color: #594844;
+  border-color: #594844;
+  border-width: 1px;  
+  cursor: pointer;
 }
 </style>

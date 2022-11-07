@@ -7,9 +7,9 @@
       <h3 class="author">@{{ freet.author }}</h3>
       <div v-if="$store.state.username === freet.author" class="actions">
         <button v-if="editing" @click="submitEdit">✅ Save changes</button>
-        <button v-if="editing" @click="stopEditing">🚫 Discard changes</button>
-        <button v-if="!editing" @click="startEditing">✏️ Edit</button>
-        <button @click="deleteFreet">🗑️ Delete</button>
+        <button style="margin-left: 0.5rem;" v-if="editing" @click="stopEditing">🚫 Discard changes</button>
+        <button style="margin-left: 0.5rem;" v-if="!editing" @click="startEditing">✏️ Edit</button>
+        <button style="margin-left: 0.5rem;" @click="deleteFreet">🗑️ Delete</button>
       </div>
     </header>
     <textarea v-if="editing" class="content" :value="draft" @input="draft = $event.target.value" />
@@ -144,5 +144,27 @@ export default {
   border: 1px solid #111;
   padding: 20px;
   position: relative;
+  background-color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h3 {
+  color: #433633;
+}
+
+button {
+  background-color: #433633;
+  color: white;
+  border-radius: 5px;
+  border-color: #433633;
+  border-width: 1px;
+  padding: 0.4rem 0.7rem;
+}
+
+button:hover {
+  background-color: #594844;
+  border-color: #594844;
+  border-width: 1px;  
+  cursor: pointer;
 }
 </style>

@@ -158,4 +158,21 @@ export default {
   padding: 10px;
   position: relative;
 }
+
+button {
+  background-color: #433633;
+  color: white;
+  border-radius: 5px;
+  border-color: #433633;
+  border-width: 1px;
+  padding: 0.4rem 0.7rem;
+  margin-left: 1rem;
+}
+
+button:hover {
+  background-color: #594844;
+  border-color: #594844;
+  border-width: 1px;  
+  cursor: pointer;
+}
 </style>

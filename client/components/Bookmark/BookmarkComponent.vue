@@ -3,7 +3,7 @@
     <header>
       <div v-if="$store.state.username !== null" class="actions">
         <button @click="bookmarkFreet">Bookmark</button>
-        <button @click="unbookmarkFreet">Unbookmark</button>
+        <button style="margin-left: 1rem;" @click="unbookmarkFreet">Unbookmark</button>
       </div>
     </header>
     <section class="alerts">
@@ -99,5 +99,21 @@ export default {
   border: 1px solid #111;
   padding: 20px;
   position: relative;
+}
+
+button {
+  background-color: #433633;
+  color: white;
+  border-radius: 5px;
+  border-color: #433633;
+  border-width: 1px;
+  padding: 0.4rem 0.7rem;
+}
+
+button:hover {
+  background-color: #594844;
+  border-color: #594844;
+  border-width: 1px;  
+  cursor: pointer;
 }
 </style>
